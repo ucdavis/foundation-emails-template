@@ -1,3 +1,9 @@
+@model Order
+
+@{
+    var order = Model.GetOrderDetails();
+}
+
 <style type="text/css">
   body,
   html,
@@ -12,7 +18,7 @@
 
   <row>
     <columns>
-      <h1>@Model.Message!</h1>
+      <h1>Work Request Submitted Confirmed!</h1>
       <p>Thank you for submitting your work request to Anlab.  Information on how to send in your samples can be found at https://anlab.ucdavis.edu/instructions/</p>
 
       <spacer size="16"></spacer>
@@ -21,34 +27,34 @@
         <row>
           <columns large="6">
             <p>
-              <strong>Project</strong><br/>@Model.Project<br/><br/>
-              <strong>Sample Type</strong><br/>@Model.SampleType
+              <strong>Project</strong><br/>@order.Project<br/><br/>
+              <strong>Sample Type</strong><br/>@order.SampleType
             </p>
           </columns>
           <columns large="6">
             <p>
-              <strong>Payment Method</strong><br/>@Modal.Payment<br/>
+              <strong>Payment Method</strong><br/>@order.Payment.ClientType<br/>
             </p>
           </columns>
         </row>
       </callout>
 
       <callout class="primary">
-        <p>Order Total: <strong>$600</strong></p>
+        <p>Order Total: <strong>@order.Total.ToString("C")</strong></p>
       </callout>
 
       <h4>Order Details</h4>
 
-      <p>Soil - 12 count</p>
+      <p>Soil - @order.Quantity count</p>
       <table>
         <tr><th>Test</th><th>Code</th><th>Fee</th><th>Setup</th><th>Test Total</th></tr>
 
         @foreach(var test in Model.tests) {
-          <tr><td>@test.Name</td><td>@test.Code</td><td>@test.Subtotal</td><td>@test.Setup</td><td>@test.Total</td></tr>
+          <tr><td>@test.Analysis</td><td>@test.Code</td><td>@test.SetupCost</td><td>@test.SetupCost</td><td>@test.SetupCost</td></tr>
         }
         <tr>
           <td colspan="4"><b>Total:</b></td>
-          <td><strong>@Modal.Total</strong></td>
+          <td><strong>@order.Total.ToString("C")</strong></td>
         </tr>
       </table>
 
