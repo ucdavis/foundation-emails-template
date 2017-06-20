@@ -1,0 +1,78 @@
+<style type="text/css">
+  body,
+  html,
+  .body {
+    background: #f3f3f3 !important;
+  }
+</style>
+
+<container>
+
+  <spacer size="16"></spacer>
+
+  <row>
+    <columns>
+      <h1>@Model.Message!</h1>
+      <p>Thank you for submitting your work request to Anlab.  Information on how to send in your samples can be found at https://anlab.ucdavis.edu/instructions/</p>
+
+      <spacer size="16"></spacer>
+
+      <callout class="secondary">
+        <row>
+          <columns large="6">
+            <p>
+              <strong>Project</strong><br/>@Model.Project<br/><br/>
+              <strong>Sample Type</strong><br/>@Model.SampleType
+            </p>
+          </columns>
+          <columns large="6">
+            <p>
+              <strong>Payment Method</strong><br/>@Modal.Payment<br/>
+            </p>
+          </columns>
+        </row>
+      </callout>
+
+      <callout class="primary">
+        <p>Order Total: <strong>$600</strong></p>
+      </callout>
+
+      <h4>Order Details</h4>
+
+      <p>Soil - 12 count</p>
+      <table>
+        <tr><th>Test</th><th>Code</th><th>Fee</th><th>Setup</th><th>Test Total</th></tr>
+
+        @foreach(var test in Model.tests) {
+          <tr><td>@test.Name</td><td>@test.Code</td><td>@test.Subtotal</td><td>@test.Setup</td><td>@test.Total</td></tr>
+        }
+        <tr>
+          <td colspan="4"><b>Total:</b></td>
+          <td><strong>@Modal.Total</strong></td>
+        </tr>
+      </table>
+
+      <hr/>
+
+      <h4>What's Next?</h4>
+
+      <p>Once we receieve your samples we will email you a confirmation and adjusted price quote.</p>
+    </columns>
+  </row>
+  <row class="footer text-center">
+    <columns large="3">
+      <img src="http://placehold.it/170x30" alt="">
+    </columns>
+    <columns large="3">
+      <p>
+        Email us at anlab@ucdavis.edu
+      </p>
+    </columns>
+    <columns large="3">
+      <p>
+        123 Maple Rd<br/>
+        Campbell, CA 95112
+      </p>
+    </columns>
+  </row>
+</container>
