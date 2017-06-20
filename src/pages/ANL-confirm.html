@@ -1,9 +1,3 @@
-@model Order
-
-@{
-    var order = Model.GetOrderDetails();
-}
-
 <style type="text/css">
   body,
   html,
@@ -49,7 +43,7 @@
       <table>
         <tr><th>Test</th><th>Code</th><th>Fee</th><th>Setup</th><th>Test Total</th></tr>
 
-        @foreach(var test in Model.tests) {
+        @foreach(var test in order.SelectedTests) {
           <tr><td>@test.Analysis</td><td>@test.Code</td><td>@test.SetupCost</td><td>@test.SetupCost</td><td>@test.SetupCost</td></tr>
         }
         <tr>
