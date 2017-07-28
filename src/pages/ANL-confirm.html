@@ -44,7 +44,7 @@
         <tr><th>Test</th><th>Code</th><th>Fee</th><th>Setup</th><th>Test Total</th></tr>
 
         @foreach(var test in order.SelectedTests) {
-          <tr><td>@test.Analysis</td><td>@test.Code</td><td>@test.SetupCost</td><td>@test.SetupCost</td><td>@test.SetupCost</td></tr>
+          <tr><td>@test.Analysis</td><td>@test.Id</td><td>@test.SetupCost</td><td>@test.SetupCost</td><td>@test.SetupCost</td></tr>
         }
         <tr>
           <td colspan="4"><b>Total:</b></td>
