@@ -12,39 +12,33 @@
 
   <row>
     <columns>
-      <h1>Work Request Submitted Confirmed!</h1>
-      <p>Thank you for submitting your work request to Anlab.  Information on how to send in your samples can be found at <a href="https://anlab.ucdavis.edu/instructions/">https://anlab.ucdavis.edu/instructions/</a> </p>
+      <h1>Anlab Work Request Billing</h1>
+      <p>A new work request has been placed that requires your attention.</p>
 
       <spacer size="16"></spacer>
 
-      <callout class="secondary">
+      <callout class="primary">
         <row>
           <columns large="6">
             <p>
-                <strong>Id</strong><br />@Model.Id<br /><br />
-                <strong>Project</strong><br/>@order.Project<br /><br />
-                <strong>Payment Method</strong><br />@order.Payment.ClientType<br /><br />
-                @if(order.ClientId != null)
-                {
-                <strong>Client Id</strong><br />@order.ClientId
-                }
+                <strong>Client Type</strong><br />@order.Payment.ClientType<br /><br />
+                <strong>Company Name</strong><br />@order.OtherPaymentInfo.CompanyName<br /><br />
+                <strong>Account Contact Name</strong><br />@order.OtherPaymentInfo.AcName<br /><br />
+                <strong>Account Contact Address</strong><br />@order.OtherPaymentInfo.AcAddr<br /><br />
             </p>
           </columns>
           <columns large="6">
             <p>
-                <strong>Sample Type</strong><br />@order.SampleType<br /><br />
-                @if (!String.IsNullOrWhiteSpace(order.Commodity))
+                <strong>Payment Type</strong><br />@order.OtherPaymentInfo.PaymentType<br /><br />
+                @if(!String.IsNullOrWhiteSpace(order.OtherPaymentInfo.PoNum))
                 {
-                <strong>Commodity</strong><br />@order.Commodity<br /><br />
+                <strong>PO Number</strong><br />@order.OtherPaymentInfo.PoNum<br /><br />
                 }
-                <strong># of Samples</strong><br />@order.Quantity
+                <strong>Account Contact Email</strong><br />@order.OtherPaymentInfo.AcEmail<br /><br />
+                <strong>Account Contact Phone Number</strong><br />@order.OtherPaymentInfo.AcPhone<br /><br />
             </p>
           </columns>
         </row>
-      </callout>
-
-      <callout class="primary">
-        <p>Order Total: <strong>@order.Total.ToString("C")</strong></p>
       </callout>
 
       <h4>Order Details</h4>
@@ -98,19 +92,8 @@
 
         <spacer size="16"></spacer>
 
-        @if (!String.IsNullOrWhiteSpace(order.AdditionalInfo))
-        {
-        <callout class="secondary">
-            <p>
-        <strong>Additional Info</strong>
-        <div style="white-space: pre-wrap">@Html.Raw(Html.Encode(order.AdditionalInfo))</div></p>
-            </callout>
-        }
       <hr/>
 
-      <h4>What's Next?</h4>
-
-      <p>Once we receieve your samples we will email you a confirmation and adjusted price quote.</p>
     </columns>
   </row>
   <row class="footer text-center">
