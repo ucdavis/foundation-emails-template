@@ -36,6 +36,9 @@
                 }
                 <strong>Account Contact Email</strong><br />@order.OtherPaymentInfo.AcEmail<br /><br />
                 <strong>Account Contact Phone Number</strong><br />@order.OtherPaymentInfo.AcPhone<br /><br />
+                @if(order.OtherPaymentInfo.PaymentType == "IOC"){
+                <strong>UC Account #</strong><br />@order.Payment.Account<br /><br />
+                }
             </p>
           </columns>
         </row>
@@ -68,20 +71,28 @@
                 }
             </tbody>
             <tfoot>
-                <tr>
-                    <td></td>
-                    <th colspan="2"><b>Processing Fee</b></th>
-                    <td>
-                        @if (string.Equals(order.Payment.ClientType, "uc", StringComparison.OrdinalIgnoreCase))
-                        {
-                        <span>@(String.Format("{0:C}", order.InternalProcessingFee))</span>
-                        }
-                        else
-                        {
-                        <span>@(String.Format("{0:C}", order.ExternalProcessingFee))</span>
-                        }
-                    </td>
-                </tr>
+            <tr>
+                <td></td>
+                <th colspan="2"><b>Processing Fee</b></th>
+                <td>
+                    @if (string.Equals(order.Payment.ClientType, "uc", StringComparison.OrdinalIgnoreCase))
+                    {
+                    <span>@(String.Format("{0:C}", order.InternalProcessingFee))</span>
+                    }
+                    else
+                    {
+                    <span>@(String.Format("{0:C}", order.ExternalProcessingFee))</span>
+                    }
+                </td>
+            </tr>
+            @if(order.AdjustmentAmount != 0)
+            {
+            <tr>
+                <td></td>
+                <th colspan="2"><b>Adjustment Amount</b></th>
+                <th>@(String.Format("{0:C}", order.AdjustmentAmount))</th>
+            </tr>
+            }
                 <tr>
                     <td></td>
                     <th colspan="2"><b>Grand Total</b></th>
