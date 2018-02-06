@@ -20,15 +20,15 @@
       <callout class="secondary">
         <row>
           <columns large="6">
-            <p>
-                <strong>Online Order Number</strong><br />@Model.Id<br /><br /> 
-                <strong>Project Title/Location</strong><br/>@order.Project<br /><br />
-                <strong>Payment Method</strong><br />@order.Payment.ClientType<br /><br />
-                @if(order.ClientId != null)
-                {
-                <strong>Client Id</strong><br />@order.ClientId
-                }
-            </p>
+              <p>
+                  <strong>Online Order Number</strong><br />@Model.Id<br /><br />
+                  <strong>Project Title/Location</strong><br />@order.Project<br /><br />
+                  <strong>Payment Method</strong><br />@order.Payment.ClientType<br /><br />
+                  @if(order.ClientInfo.ClientId != null)
+                  {
+                  <strong>Client Id</strong><br />@order.ClientInfo.ClientId
+                  }
+              </p>
           </columns>
           <columns large="6">
             <p>
@@ -110,7 +110,7 @@
 
       <h4>What's Next?</h4>
 
-      <p>Once we receieve your samples we will email you a confirmation and adjusted price quote.</p>
+      <p>Once we receive your samples we will email you a confirmation and adjusted price quote.</p>
     </columns>
   </row>
   <row class="footer text-center">

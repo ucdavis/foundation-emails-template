@@ -30,15 +30,15 @@
       <callout class="secondary">
         <row>
           <columns large="6">
-            <p>
-                <strong>Online Order Number</strong><br />@Model.Id<br /><br />
-                <strong>Project Title/Location</strong><br/>@order.Project<br /><br />
-                <strong>Payment Method</strong><br />@order.Payment.ClientType<br /><br />
-                @if(order.ClientId != null)
-                {
-                <strong>Client Id</strong><br />@order.ClientId
-                }
-            </p>
+              <p>
+                  <strong>Online Order Number</strong><br />@Model.Id<br /><br />
+                  <strong>Project Title/Location</strong><br />@order.Project<br /><br />
+                  <strong>Payment Method</strong><br />@order.Payment.ClientType<br /><br />
+                  @if(Model.ClientId != null)
+                  {
+                  <strong>Client Id</strong><br />@Model.ClientId
+                  }
+              </p>
           </columns>
           <columns large="6">
             <p>
