@@ -21,7 +21,7 @@
                   <columns large="6">
                       <p>
                           <strong>Client Type</strong><br />@order.Payment.ClientType<br /><br />
-                          <strong>Company Name</strong><br />@order.OtherPaymentInfo.CompanyName<br /><br />
+                          <strong>@(order.Payment.ClientType == "uc" ? "Campus Name" : "Company Name")</strong><br />@order.OtherPaymentInfo.CompanyName<br /><br />
                           <strong>Account Contact Name</strong><br />@order.OtherPaymentInfo.AcName<br /><br />
                           <strong>Account Contact Address</strong><br />@order.OtherPaymentInfo.AcAddr<br /><br />
                       </p>
