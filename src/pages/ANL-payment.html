@@ -14,7 +14,7 @@
     <columns>
       <h1>Payment Complete</h1>
       <p>The payment for your work order has been completed. Here is a summary of your order.</p>
-      <h3><a asp-controller="Results" asp-action="Link" asp-route-id="@Model.ShareIdentifier">View your results here</a></h3>
+      <h3><a asp-protocol="@protocol" asp-host="@host" asp-controller="Results" asp-action="Link" asp-route-id="@Model.ShareIdentifier">View your results here</a></h3>
 
       <spacer size="16"></spacer>
 
