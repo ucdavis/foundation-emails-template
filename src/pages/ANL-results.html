@@ -19,7 +19,7 @@
 
                     <spacer size="16"></spacer>
 
-                    <h3><a href="http://localhost:44349/Results/Link/@Model.ShareIdentifier">View your results here</a></h3>
+                    <h3><a asp-protocol="@protocol" asp-host="@host" asp-controller="Results" asp-action="Link" asp-route-id="@Model.ShareIdentifier">View your results here</a></h3>
                 </columns>
             }
             else
@@ -30,7 +30,7 @@
 
                     <spacer size="16"></spacer>
 
-                    <h3><a href="http://localhost:44349/Results/Link/@Model.ShareIdentifier">View your results and pay here</a></h3>
+                    <h3><a asp-protocol="@protocol" asp-host="@host" asp-controller="Results" asp-action="Link" asp-route-id="@Model.ShareIdentifier">View your results and pay here</a></h3>
                 </columns>
             }
 
@@ -38,7 +38,7 @@
     </row>
       <row class="footer text-center">
     <columns large="3">
-      <img src="http://placehold.it/170x30" alt="">
+        <img src='@image' alt="">
     </columns>
     <columns large="3">
       <p>
