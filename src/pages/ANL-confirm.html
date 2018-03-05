@@ -12,8 +12,8 @@
 
   <row>
     <columns>
-      <h1>Work Request Submitted Confirmed!</h1>
-        <p>Thank you for submitting your work request to Anlab.  Information on how to send in your samples can be found at <a asp-protocol="@protocol" asp-host="@host" asp-controller="Pages" asp-action="using-the-lab" asp->Using the lab</a> </p>
+      <h1>Work Order Confirmation</h1>
+        <p>Thank you for submitting your work request to the Analytical Lab.  Information regarding how to send in your samples can be found at <a asp-protocol="@protocol" asp-host="@host" asp-controller="Pages" asp-action="using-the-lab" asp->Using the lab</a> </p>
 
       <spacer size="16"></spacer>
 
@@ -23,22 +23,27 @@
               <p>
                   <strong>Online Order Number</strong><br />@Model.Id<br /><br />
                   <strong>Project Title/Location</strong><br />@order.Project<br /><br />
-                  <strong>Payment Method</strong><br />@order.Payment.ClientType<br /><br />
+                  <strong>Payment Method</strong><br />@order.Payment.ClientType.PaymentMethodDescription()<br /><br />
                   @if(order.ClientInfo.ClientId != null)
                   {
                   <strong>Client Id</strong><br />@order.ClientInfo.ClientId
                   }
+                  <strong>Client Name</strong> <br />@order.ClientInfo.Name
               </p>
           </columns>
           <columns large="6">
-            <p>
-                <strong>Sample Type</strong><br />@order.SampleType<br /><br />
-                @if (!String.IsNullOrWhiteSpace(order.Commodity))
-                {
-                <strong>Commodity</strong><br />@order.Commodity<br /><br />
-                }
-                <strong># of Samples</strong><br />@order.Quantity
-            </p>
+              <p>
+                  <strong>Sample Type</strong><br />@order.SampleType<br /><br />
+                  @if (!String.IsNullOrWhiteSpace(order.Commodity))
+                  {
+                  <strong>Commodity</strong><br />@order.Commodity<br /><br />
+                  }
+                  <strong># of Samples</strong><br />@order.Quantity<br /><br />
+                  @if (order.DateSampled != null)
+                  {
+                  <strong>Date Sampled</strong><br />@order.DateSampled.ToShortDateString()
+                  }
+              </p>
           </columns>
         </row>
       </callout>
@@ -51,7 +56,7 @@
         <table>
             <thead>
                 <tr>
-                    <th><b>Analysis</b></th>
+                    <th><b>Test(s)</b></th>
                     <th><b>Per Test</b></th>
                     <th><b>Setup</b></th>
                     <th><b>Test Total</b></th>
@@ -110,7 +115,7 @@
 
       <h4>What's Next?</h4>
 
-      <p>Once we receive your samples we will email you a confirmation and adjusted price quote.</p>
+      <p>Once we receive your samples we will email you a confirmation.</p>
     </columns>
   </row>
   <row class="footer text-center">
@@ -123,6 +128,7 @@
         </p>
         <p>
             UC Davis Analytical Lab <br />
+            <a href="tel:5307520147">530 752-0147</a> <br/>
             University of California Davis, California <br />
             95616-5270
         </p>
