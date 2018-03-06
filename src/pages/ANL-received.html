@@ -13,9 +13,13 @@
   <row>
     <columns>
       <h1>Work Request Received By Lab</h1>
-      <p>Your work order has been received by the lab. Please review this information, as there may have been changes in tests and/or pricing.</p>
+      <p>Your samples have been received by the lab. Please review this information, as there may have been necessary changes in tests, number of samples, and/or pricing. Please notify us immediately of any required changes.</p>
 
-      <spacer size="16"></spacer>
+        <spacer size="16"></spacer>
+        
+        <callout class="primary">
+            <p>The work request number assigned to this order is <strong>@Model.RequestNum</strong></p>
+        </callout>
 
         @if (!String.IsNullOrWhiteSpace(order.LabComments))
         {
@@ -33,22 +37,28 @@
               <p>
                   <strong>Online Order Number</strong><br />@Model.Id<br /><br />
                   <strong>Project Title/Location</strong><br />@order.Project<br /><br />
-                  <strong>Payment Method</strong><br />@order.Payment.ClientType<br /><br />
-                  @if(Model.ClientId != null)
+                  <strong>Payment Method</strong><br />@order.Payment.ClientType.PaymentMethodDescription()<br /><br />
+                  @if(order.ClientInfo.ClientId != null)
                   {
-                  <strong>Client Id</strong><br />@Model.ClientId
+                  <strong>Client Id</strong><br />@order.ClientInfo.ClientId<br /><br />
                   }
+                  <strong>Client Name</strong> <br />@order.ClientInfo.Name
               </p>
           </columns>
           <columns large="6">
-            <p>
-                <strong>Sample Type</strong><br />@order.SampleType<br /><br />
-                @if (!String.IsNullOrWhiteSpace(order.Commodity))
-                {
-                <strong>Commodity</strong><br />@order.Commodity<br /><br />
-                }
-                <strong># of Samples</strong><br />@order.Quantity
-            </p>
+              <p>
+                  <strong>Created By</strong><br />@createdBy<br /><br />
+                  <strong>Sample Type</strong><br />@order.SampleType<br /><br />
+                  @if (!String.IsNullOrWhiteSpace(order.Commodity))
+                  {
+                  <strong>Commodity</strong><br />@order.Commodity<br /><br />
+                  }
+                  <strong># of Samples</strong><br />@order.Quantity<br /><br />
+                  @if (order.DateSampled != null)
+                  {
+                  <strong>Date Sampled</strong><br />@order.DateSampled.ToShortDateString()
+                  }
+              </p>
           </columns>
         </row>
       </callout>
@@ -61,7 +71,7 @@
         <table>
             <thead>
                 <tr>
-                    <th><b>Analysis</b></th>
+                    <th><b>Test(s)</b></th>
                     <th><b>Per Test</b></th>
                     <th><b>Setup</b></th>
                     <th><b>Test Total</b></th>
@@ -129,7 +139,7 @@
 
       <h4>What's Next?</h4>
 
-      <p>When your results are ready you will get another email with a link to see them and pay.</p>
+      <p>When testing is completed you will receive an email with a link to the results and payment instructions.</p>
     </columns>
   </row>
   <row class="footer text-center">
@@ -142,6 +152,7 @@
           </p>
           <p>
               UC Davis Analytical Lab <br />
+              <a href="tel:5307520147">530 752-0147</a> <br />
               University of California Davis, California <br />
               95616-5270
           </p>
